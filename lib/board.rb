@@ -34,5 +34,12 @@ class Board
 	  end
   end
 
+  def full?
+    false
+  end
 
+  # returns "X", "O" or false
+  def winner
+    false
+  end
 end
