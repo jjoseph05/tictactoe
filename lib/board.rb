@@ -23,9 +23,16 @@ class Board
 
   	str
   end
+
+
   def make_move(mark, row, column)
   	row_array = @grid[row]
-  	row_array[column] = mark
+  	if row_array[column] == '-'
+	  	row_array[column] = mark
+	  else
+	  	raise "Cell (#{row}, #{column}) is already occupied"
+	  end
   end
+
 
 end
