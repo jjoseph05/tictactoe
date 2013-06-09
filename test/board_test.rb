@@ -1,5 +1,5 @@
 require 'test/unit'
-require File.join(File.dirname(__FILE__), '..', 'lib', 'board') # require './../lib/board'
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'board')) # require './../lib/board'
 
 class BoardTest < Test::Unit::TestCase
   def setup
@@ -14,6 +14,6 @@ class BoardTest < Test::Unit::TestCase
 ---
     BOARD
 
-    assert_equal str, expected
+    assert_equal expected, str
   end
 end
