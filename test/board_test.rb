@@ -41,37 +41,59 @@ class BoardTest < Test::Unit::TestCase
   end
 
   def test_full?
-    mark = "X"
     0.upto(2) do |row|
       0.upto(2) do |col|
-
         assert !@board.full?
-        @board.make_move(mark, row, col)
-
-        if mark == "X"
-          mark = "O"
-        else
-          mark == "X"
-        end
+        @board.make_move("X", row, col)
       end
     end
 
     assert @board.full?
   end
 
-  def test_winner
+  def test_winner_col
     assert !@board.winner
 
     @board.make_move("X", 0, 0)
     assert !@board.winner
 
-    @board.make_move("O", 1, 1)
-    assert !@board.winner
-
     @board.make_move("X", 1, 0)
     assert !@board.winner
 
-    @board.make_move("O", 0, 1)
+    @board.make_move("X", 2, 0)
+    assert_equal "X", @board.winner
+  end
+  def test_winner_row
+    assert !@board.winner
+
+    @board.make_move("X", 0, 0)
+    assert !@board.winner
+
+    @board.make_move("X", 0, 1)
+    assert !@board.winner
+
+    @board.make_move("X", 0, 2)
+    assert_equal "X", @board.winner
+  end
+  def test_winner_diag_left
+    assert !@board.winner
+
+    @board.make_move("X", 0, 0)
+    assert !@board.winner
+
+    @board.make_move("X", 1, 1)
+    assert !@board.winner
+
+    @board.make_move("X", 2, 2)
+    assert_equal "X", @board.winner
+  end
+  def test_winner_diag_right
+    assert !@board.winner
+
+    @board.make_move("X", 0, 2)
+    assert !@board.winner
+
+    @board.make_move("X", 1, 1)
     assert !@board.winner
 
     @board.make_move("X", 2, 0)
